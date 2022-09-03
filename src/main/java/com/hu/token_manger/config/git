@@ -6,7 +6,9 @@ ssh-keygen -t rsa -C "tom@gmail.com"
 3、在~/.ssh文件目录下查看公钥
 cat id_rsa.pub
 
-==================
 登录命令：mysql -u debian-sys-main -p
-
-AodNHTbMZYNoRFVN
+mysql 服务命令：
+service mysql status
+service mysql start
+service mysq restart
+service mysql stop
