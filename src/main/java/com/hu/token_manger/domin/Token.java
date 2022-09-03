@@ -1,10 +1,11 @@
 package com.hu.token_manger.domin;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 @Data
 public class Token {
-    int id;
+    Integer id;
     String contract_address;
     String name;
     String symbol;
