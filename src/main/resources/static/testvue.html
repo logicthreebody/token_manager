@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-modle="http://www.w3.org/1999/xhtml">
+<script type="text/javascript" src="vue/vue2.7/vue.js" ></script>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="msgs_div">
+    <h1>hello {{name}}</h1>
+    welcome {{school.name}}
+    <a v-bind:href="school.url" >google.com</a>
+    <br>
+    <a :href="school.url" >google.comsss</a><br>
+    <!-- 通写法普   -->
+    通写法 单向绑定：<input type="text" v-bind:value="school.address"><br>
+    通写法 双向绑定：<input  type="text" v-model:value="school.address"><br>
+    <!--  简写  -->
+    简写 单向绑定：<input type="text" :value="school.address"><br>
+    简写 双向绑定：<input  type="text" v-model="school.address"><br>
+</div>
+<div id="msgs_div2">
+    {{name}}
+</div>
+<script type="text/javascript">
+    Vue.config.productionTip = false;
+    new Vue({
+        el: '#msgs_div',
+        data: {
+            name: '哈利波特',
+            school: {
+                name: '魔法学院',
+                url: 'https://www.google.com',
+                address: '十又四分之三站台'
+            }
+        }
+    })
+    const vm = new Vue({
+        // el: 'msgs_div2',
+        //data 函数的第二种写法
+        data(){
+            return {
+                name: 'el 的第二种写法：vm.$mount(\'#msgs_div2\')'
+            }
+        }
+    })
+    console.log(vm);
+    //el 的第二种写法，采用手动加载方式
+    vm.$mount('#msgs_div2');
+
+</script>
+
+</body>
+</html>
