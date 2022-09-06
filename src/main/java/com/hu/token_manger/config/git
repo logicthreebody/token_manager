@@ -5,6 +5,18 @@ git config --global user.email "tom@gmail.com"
 ssh-keygen -t rsa -C "tom@gmail.com"
 3、在~/.ssh文件目录下查看公钥
 cat id_rsa.pub
+-------------------------
+git删除远程分支
+git push origin --delete revert-2-master
+
+
+
+
+
+
+
+
+
 
 登录命令：mysql -u debian-sys-main -p
 mysql 服务命令：
