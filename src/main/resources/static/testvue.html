@@ -3,7 +3,7 @@
 <script type="text/javascript" src="vue/vue2.7/vue.js" ></script>
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>vue test</title>
 </head>
 <body>
 <div id="msgs_div">
@@ -18,9 +18,18 @@
     <!--  简写  -->
     简写 单向绑定：<input type="text" :value="school.address"><br>
     简写 双向绑定：<input  type="text" v-model="school.address"><br>
+
 </div>
 <div id="msgs_div2">
     {{name}}
+    <h2>事件demo</h2>
+    <button @click="testClick">点击按钮</button><br/>
+    <button @click="testClick2(666)">带参数的事件</button><br/>
+    <button @click.once="testClick2(666)">最多只触发一次</button><br/>
+    <button @click="testClick3(666,$event)">带参数的事件</button><br/>
+    <input @keyup.enter="submit" value="回车提交" />
+    <!-- Alt + Enter -->
+    <input @keyup.alt.enter="clear" value="Alt + Enter事件" />
 </div>
 <script type="text/javascript">
     Vue.config.productionTip = false;
@@ -41,6 +50,24 @@
         data(){
             return {
                 name: 'el 的第二种写法：vm.$mount(\'#msgs_div2\')'
+            }
+        },
+        methods:{
+            testClick(event){
+                alert('hello ${this.name}')
+                alert(event.target.tagName)
+            },
+            testClick2(num){
+                alert(num);
+            },
+            testClick3(num,event){
+                alert(num+'---'+event.target.tagName);
+            },
+            submit(){
+                alert('提交')
+            },
+            clear(){
+                alert('alt+enter事件')
             }
         }
     })
