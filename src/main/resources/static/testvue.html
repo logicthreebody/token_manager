@@ -29,7 +29,9 @@
     <button @click="testClick3(666,$event)">带参数的事件</button><br/>
     <input @keyup.enter="submit" value="回车提交" />
     <!-- Alt + Enter -->
-    <input @keyup.alt.enter="clear" value="Alt + Enter事件" />
+    <input @keyup.alt.enter="clear" value="Alt + Enter事件" /><br/>
+    计算属性computed  示例：计算和<input v-model="x"/> + <input v-model="y" /> = {{count}}<br/>
+    监视属性watch 示例：计算和<input v-model="x"/> * <input v-model="y" /> = {{cj}}<br/>
 </div>
 <script type="text/javascript">
     Vue.config.productionTip = false;
@@ -49,12 +51,30 @@
         //data 函数的第二种写法
         data(){
             return {
+                x: 1,
+                y: 5,
+                cj: 5 ,
                 name: 'el 的第二种写法：vm.$mount(\'#msgs_div2\')'
+            }
+        },
+        computed:{
+            count(){
+                return this.x + this.y;
+            }
+        },
+        watch:{
+            x(new_value,old_value){
+                console.log(new_value,old_value)
+                this.cj = new_value*this.y;
+            },
+            y(new_value,old_value){
+                console.log(new_value,old_value)
+                this.cj = new_value*this.x;
             }
         },
         methods:{
             testClick(event){
-                alert('hello ${this.name}')
+                alert('hello '+this.name)
                 alert(event.target.tagName)
             },
             testClick2(num){
