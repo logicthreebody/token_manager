@@ -32,6 +32,12 @@
     <input @keyup.alt.enter="clear" value="Alt + Enter事件" /><br/>
     计算属性computed  示例：计算和<input v-model="x"/> + <input v-model="y" /> = {{count}}<br/>
     监视属性watch 示例：计算和<input v-model="x"/> * <input v-model="y" /> = {{cj}}<br/>
+    v-for示例：
+    <ul>
+        <li v-for="f in firends" :key="f.id">
+            {{f.name}} --- {{f.age}}
+        </li>
+    </ul>
 </div>
 <script type="text/javascript">
     Vue.config.productionTip = false;
@@ -54,6 +60,21 @@
                 x: 1,
                 y: 5,
                 cj: 5 ,
+                firends:[
+                    {
+                        id:11,
+                        name:'张三',
+                        age:28
+                    }, {
+                        id:2,
+                        name:'李四',
+                        age:31
+                    }, {
+                        id:3,
+                        name:'王五',
+                        age:19
+                    }
+                ],
                 name: 'el 的第二种写法：vm.$mount(\'#msgs_div2\')'
             }
         },
