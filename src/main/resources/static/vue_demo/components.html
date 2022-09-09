@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-modle="http://www.w3.org/1999/xhtml">
+<script type="text/javascript" src="../vue/vue2.7/vue.js" ></script>
+<head>
+    <meta charset="UTF-8">
+    <title>vue demo</title>
+</head>
+<body>
+<div id="msgs_div">
+    <!-- 3、使用组件   -->
+    <!--    <token></token>-->
+</div>
+<script type="text/javascript">
+    Vue.config.productionTip = false;
+    const transfer = Vue.extend({
+        template:'<div>交易记录：<br/>from:{{from}} to:{{to}} amount:{{amount+1}}</div>',
+        data(){
+            return {
+                from:'0x',
+                to:'0x123456',
+                amount:1025
+            }
+        }
+    })
+
+    //1、创建组件
+    const token = Vue.extend({
+        template:'<div>代币名称：{{name}}<br>代币代码：{{symbol}}<br/><token-transfer></token-transfer></div>',
+        data(){
+            return {
+                name:'token001',
+                symbol:'TOKEN001',
+                totalSupply:10000,
+                decimals:18
+            }
+        },
+        //嵌套组件
+        components:{
+            'token-transfer':transfer
+        }
+        ,
+        methods:{
+            showTotalSupply(){
+                alert(this.totalSupply)
+            }
+        }
+    })
+
+    const contact_us = Vue.extend({
+        template:'<div>联系方式：<br>QQ：{{qq}}<br> vx：{{vx}}</div>',
+        data(){
+            return {
+                qq:982217712,
+                vx:'all-in-web3'
+            }
+        }
+    })
+    //管理组件的组件
+    const app = Vue.extend({
+        template:'<div>' +
+            '<token></token><br><contact_us></contact_us>' +
+            '</div>',
+        components:{
+            // t : token 正常写法
+            token,//简写,直接使用定义时的名称
+            contact_us
+        }
+    })
+
+
+    //2、注册（全局）组件
+    // Vue.component('token',token)
+    new Vue({
+        el: '#msgs_div',
+        template:'<app></app>',
+        //2、注册（局部）组件
+        components:{
+            app
+        }
+    })
+</script>
+</body>
+</html>
